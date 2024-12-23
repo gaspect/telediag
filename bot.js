@@ -12,9 +12,14 @@ export const bot = () => {
     let render = new StrategyBaseRender(new MermaidRender())
 
     bot.on(message("text"), async (ctx) => {
-        const image = await render.render(ctx.message.text);
-        if(image)
-            ctx.replyWithDocument({source:image, filename:"diagram.svg"})
+        try{
+            const image = await render.render(ctx.message.text);
+            if(image)
+                ctx.replyWithDocument({source:image, filename:"diagram.svg"})
+        }catch (e) {
+            ctx.reply(e.message)
+        }
+
     });
 
     return bot;
