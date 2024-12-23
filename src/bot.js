@@ -12,7 +12,7 @@ export const bot = (render) => {
     bot.on(message("text"), async (ctx) => {
         try {
             const images = await render.render(ctx.message);
-            if (images)
+            if (images.length)
                 ctx.replyWithMediaGroup(images.map(img => ({
                     type: "photo",
                     media: {source: img}

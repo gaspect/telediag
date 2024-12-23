@@ -13,10 +13,10 @@ export class StrategyBaseRenderProxy {
      * @return { Promise<Array<Buffer>> } The image.
      */
     async render(message) {
-        return Promise.all(("entities" in message ? message["entities"] : []).filter(
+        return (await Promise.all(("entities" in message ? message["entities"] : []).filter(
             e => "language" in e && e["language"] in this.strategies
         ).map(
             e => this.strategies[e["language"]].render(message.text.slice(e.offset, e.offset + e.length))
-        ))
+        ))).filter(e=>e)
     }
 }

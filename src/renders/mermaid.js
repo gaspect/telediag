@@ -5,13 +5,7 @@ import {Render} from './render.js';
 import {debug} from "../utils.js";
 
 class MermaidRender extends Render {
-    constructor() {
-        super();
-    }
 
-    /**
-     * @param {string} txt
-     */
     async render(txt) {
         try {
             let browser = await puppeteer.launch();
