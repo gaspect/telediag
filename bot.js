@@ -2,11 +2,10 @@ import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
 import { StrategyBaseRender } from './renders/strategy.js'
 import { MermaidRender } from './renders/mermaid.js'
-import { config } from 'dotenv';
+
 
 
 export const bot = () => {
-    config();
 
     let bot = new Telegraf(process.env.TELEGRAM);
 
