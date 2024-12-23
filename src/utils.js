@@ -1,0 +1,1 @@
+export const debug = process.env.DEBUG && process.env.DEBUG === "True"

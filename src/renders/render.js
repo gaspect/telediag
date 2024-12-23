@@ -1,9 +1,9 @@
-export class Render{
-    async render(txt){
-        throw  "Not implemented error"
-    }
-
-    async prepare(text) {
-        throw  "Not implemented error"
+export class Render {
+    /**
+     * Returns a buffered image
+     * @return {Promise<Buffer>} The image.
+     */
+    async render(txt) {
+        throw "Not implemented error"
     }
 }

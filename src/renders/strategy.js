@@ -1,18 +1,22 @@
-import  { Render } from './render.js';
+import {Render} from './render.js';
 
-export  class StrategyBaseRender extends  Render{
-
-    constructor(...strategies) {
-        super()
+export class StrategyBaseRenderProxy {
+    /**
+     * @param {Object.<string, Render>} strategies.
+     */
+    constructor(strategies) {
         this.strategies = strategies;
     }
 
-    async render(txt){
-      for (const value in this.strategies){
-        let result = await  this.strategies[value].render(txt);
-        if(result)
-            return result;
-      }
-      return null
+    /**
+     * @param  {{ text:string, entities:Array.<{offset:bigint, length:bigint, language:string}> }} message
+     * @return { Promise<Array<Buffer>> } The image.
+     */
+    async render(message) {
+        return Promise.all(("entities" in message ? message["entities"] : []).filter(
+            e => "language" in e && e["language"] in this.strategies
+        ).map(
+            e => this.strategies[e["language"]].render(message.text.slice(e.offset, e.offset + e.length))
+        ))
     }
 }

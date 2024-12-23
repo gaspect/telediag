@@ -2,27 +2,28 @@ import mermaid from 'mermaid';
 import {renderMermaid} from "@mermaid-js/mermaid-cli";
 import puppeteer from "puppeteer";
 import {Render} from './render.js';
+import {debug} from "../utils.js";
 
-export class MermaidRender extends Render {
+class MermaidRender extends Render {
     constructor() {
         super();
     }
 
+    /**
+     * @param {string} txt
+     */
     async render(txt) {
-        let code = txt;
-        if (txt.includes('```mermaid'))
-            code = txt.split('```mermaid')[1].split('```')[0].trim();
-        if (!await mermaid.parse(code,{suppressErrors:true}))
-            return null
-        const browser = await puppeteer.launch({
-                args: ["--no-sandbox", "--disable-setuid-sandbox"],
-                headless: "new",
+        try {
+            let browser = await puppeteer.launch();
+            let {data} = await renderMermaid(browser, txt, "png", {
+                backgroundColor: "white",
             });
-            // noinspection JSCheckFunctionSignatures
-        const {data} = await renderMermaid(browser, code, "svg", {
-            backgroundColor: "white",
-        });
-        return Buffer.from(data);
-
+            return Buffer.from(data);
+        } catch (e) {
+            if (debug)
+                console.warn(e.message)
+        }
     }
 }
+
+export const render = new MermaidRender()
