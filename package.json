@@ -1,0 +1,21 @@
+{
+  "name": "telediag",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "run": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "^11.4.2",
+    "dotenv": "^16.4.7",
+    "mermaid": "^11.4.1",
+    "puppeteer-core": "^23.11.1",
+    "telegraf": "^4.16.3"
+  }
+}
