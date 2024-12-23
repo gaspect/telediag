@@ -1,6 +1,6 @@
 import mermaid from 'mermaid';
 import {renderMermaid} from "@mermaid-js/mermaid-cli";
-import puppeteer from "puppeteer-core";
+import puppeteer from "puppeteer";
 import {Render} from './render.js';
 
 export class MermaidRender extends Render {

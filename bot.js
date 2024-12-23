@@ -17,7 +17,8 @@ export const bot = () => {
             if(image)
                 ctx.replyWithDocument({source:image, filename:"diagram.svg"})
         }catch (e) {
-            ctx.reply(e.message)
+            if(process.env.DEBUG && process.env.DEBUG === "True")
+                ctx.reply(e.message)
         }
 
     });

@@ -15,7 +15,7 @@
     "@mermaid-js/mermaid-cli": "^11.4.2",
     "dotenv": "^16.4.7",
     "mermaid": "^11.4.1",
-    "puppeteer-core": "^23.11.1",
+    "puppeteer": "^23.11.1",
     "telegraf": "^4.16.3"
   }
 }
