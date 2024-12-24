@@ -1,6 +1,6 @@
-import { config } from 'dotenv';
-import { bot } from './bot.js';
-import { StrategyBaseRenderProxy } from "./render.js";
+import {config} from 'dotenv';
+import {bot} from './bot.js';
+import {StrategyBaseRenderProxy} from "./render.js";
 import {langs} from "./utils.js";
 
 config()
@@ -21,4 +21,3 @@ tbot.launch(launchOptions).then(() => console.log("👋"));
 
 process.once('SIGINT', () => tbot.stop('SIGINT'))
 process.once('SIGTERM', () => tbot.stop('SIGTERM'))
-

@@ -34,8 +34,5 @@ export const bot = (render) => {
         }
     });
 
-
-
-
     return bot;
 }
